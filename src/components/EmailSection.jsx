@@ -59,7 +59,7 @@ const EmailSection = ({ setStep, setEmail }) => {
 
             <input
               {...register("email", { required: "Email is required" })}
-              type="text"
+              type="email"
               className="w-full border border-blue-500 rounded-md px-3 py-3 outline-none 
                        focus:ring-1 focus:ring-blue-500"
             />
