@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import mapIcon from "../assets/map.svg";
 
 const PassSection = ({ email }) => {
   const navigate = useNavigate();
@@ -113,8 +114,9 @@ const PassSection = ({ email }) => {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-6">
             <img
-                src="https://www.gstatic.com/images/branding/product/1x/chrome_48dp.png"
+                src={mapIcon}
                 className="w-8 h-8"
+                alt="map_icon"
             />
           </div>
 

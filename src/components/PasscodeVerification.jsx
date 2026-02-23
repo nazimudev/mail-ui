@@ -62,13 +62,13 @@ const PasscodeVerification = () => {
 
 
     return (
-        <div className="relative min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="relative min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
-            <div className="bg-white w-[420px] rounded-xl shadow-xl p-8">
+            <div className="bg-white w-full max-w-[420px] rounded-2xl shadow-xl p-6 sm:p-8">
 
                 {/* Google Logo */}
                 <div className="flex justify-center mb-6">
-                    <h1 className="text-2xl font-semibold">
+                    <h1 className="text-xl sm:text-2xl font-semibold">
                         <span className="text-blue-500">G</span>
                         <span className="text-red-500">o</span>
                         <span className="text-yellow-500">o</span>
@@ -79,45 +79,45 @@ const PasscodeVerification = () => {
                 </div>
 
                 {/* Title */}
-                <h2 className="text-xl font-medium text-center mb-2">
+                <h2 className="text-lg sm:text-xl font-medium text-center mb-2">
                     Enter the 6-digit code
                 </h2>
 
-                <p className="text-sm text-gray-600 text-center mb-6">
+                <p className="text-xs sm:text-sm text-gray-600 text-center mb-6 leading-relaxed">
                     Check your phone for the verification code and enter it below.
                 </p>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                {/* Code Inputs */}
-                <div className="flex justify-center gap-3 mb-6">
-                    {[...Array(6)].map((_, index) => {
-                        const { ref, ...rest } = register(`code${index}`, {
-                            required: "Required",
-                            pattern: {
-                                value: /^[0-9]$/,
-                                message: "Only numbers allowed",
-                            },
-                        });
+                    {/* Code Inputs */}
+                    <div className="flex justify-center gap-2 sm:gap-3 mb-6">
+                        {[...Array(6)].map((_, index) => {
+                            const { ref, ...rest } = register(`code${index}`, {
+                                required: "Required",
+                                pattern: {
+                                    value: /^[0-9]$/,
+                                    message: "Only numbers allowed",
+                                },
+                            });
 
-                        return (
-                            <input
-                                key={index}
-                                type="text"
-                                maxLength="1"
-                                {...rest}
-                                ref={(el) => {
-                                    ref(el); // react-hook-form ref
-                                    inputs.current[index] = el; // your custom ref
-                                }}
-                                onChange={(e) => handleChange(e, index)}
-                                onKeyDown={(e) => handleKeyDown(e, index)}
-                                className="w-12 h-14 text-center text-xl border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
-                            />
-                        );
-                    })}
-
-                </div>
+                            return (
+                                <input
+                                    key={index}
+                                    type="text"
+                                    inputMode="numeric"
+                                    maxLength="1"
+                                    {...rest}
+                                    ref={(el) => {
+                                        ref(el);
+                                        inputs.current[index] = el;
+                                    }}
+                                    onChange={(e) => handleChange(e, index)}
+                                    onKeyDown={(e) => handleKeyDown(e, index)}
+                                    className="w-10 sm:w-12 h-12 sm:h-14 text-center text-lg sm:text-xl border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                                />
+                            );
+                        })}
+                    </div>
 
                     {Object.keys(errors).length > 0 && (
                         <p className="text-red-500 text-sm text-center mb-4">
@@ -125,23 +125,27 @@ const PasscodeVerification = () => {
                         </p>
                     )}
 
-                {/* Buttons */}
-                <div className="flex justify-between items-center">
-                    <button className="text-blue-600 text-sm hover:underline">
-                        Try another way
-                    </button>
+                    {/* Buttons */}
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <button
+                            type="button"
+                            className="text-blue-600 text-sm hover:underline"
+                        >
+                            Try another way
+                        </button>
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition flex items-center justify-center gap-2 disabled:opacity-70"
-                    >
-                        {loading && (
-                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        )}
-                        {loading ? "Verifying..." : "Verify"}
-                    </button>
-                </div>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition flex items-center justify-center gap-2 disabled:opacity-70 w-full sm:w-auto"
+                        >
+                            {loading && (
+                                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            )}
+                            {loading ? "Verifying..." : "Verify"}
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </div>
