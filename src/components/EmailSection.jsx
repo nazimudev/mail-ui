@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import mapIcon from "../assets/map.svg";
 
 const EmailSection = ({ setStep, setEmail }) => {
   const {
@@ -37,17 +38,18 @@ const EmailSection = ({ setStep, setEmail }) => {
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-6">
           <img
-            src="https://www.gstatic.com/images/branding/product/1x/chrome_48dp.png"
+            src={mapIcon}
             className="w-7 h-7 sm:w-8 sm:h-8"
+            alt="Image"
           />
         </div>
 
         <h1 className="text-2xl sm:text-[28px] md:text-[32px] font-normal text-gray-900 mb-3">
-          Sign in to Chrome
+          Sign in to Map
         </h1>
 
         <p className="text-gray-600 text-sm sm:text-[16px]">
-          Use your Google Account
+          Use your Email Account
         </p>
       </div>
 
